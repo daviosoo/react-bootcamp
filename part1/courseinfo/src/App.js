@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+const Title = ({course}) => <h1> {course} </h1>
+const Part = (props) => <p> {props.partName} {props.exercises} </p>
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const Content = (props) => {
+  return(
+    <>
+      <Part partName = {props.parts[0]} exercises={props.exercises[0]}/>
+      <Part partName = {props.parts[1]} exercises={props.exercises[1]}/>
+      <Part partName = {props.parts[2]} exercises={props.exercises[2]}/>
+    </>
+  )
 }
 
-export default App;
+const Total = ({exercises})=> <p>Number of exercises {exercises[0] + exercises[1] + exercises[2]}</p>
+const App = () => {
+  const course = 'Half Stack application development'
+  const parts = ['Fundamentals of React', 'Using props to pass data', 'State of a component']
+  const exercises = [10, 7, 14]
+
+  return (
+    <div>
+      <Title course={course}/>
+      <Content parts={parts} exercises={exercises}/>
+      <Total exercises={exercises}/>
+    </div>
+  )
+}
+
+export default App
